@@ -49,7 +49,7 @@ class _CartScreenState extends State<CartScreen> {
               );
             } else if (snapshot.hasError) {
               return Center(
-                child: Text("NOT FOUND"),
+                child: Text("DATA NOT FOUND"),
               );
             } else if (snapshot.hasData) {
               var value = snapshot.data;
