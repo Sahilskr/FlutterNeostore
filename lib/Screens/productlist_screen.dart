@@ -1,11 +1,10 @@
 import 'package:NeoStore/Api/api_provider.dart';
-import 'package:NeoStore/product_details_screen.dart';
+import 'package:NeoStore/Screens/cart_screen.dart';
+import 'package:NeoStore/Screens/product_details_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
-import 'cart_screen.dart';
 
 class ProductList extends StatefulWidget {
   @override

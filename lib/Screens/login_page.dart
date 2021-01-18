@@ -1,11 +1,13 @@
-import 'package:NeoStore/home_screen.dart';
-import 'package:NeoStore/register_screen.dart';
+
+import 'package:NeoStore/Api/api_provider.dart';
+import 'package:NeoStore/Screens/home_screen.dart';
+import 'package:NeoStore/Screens/register_screen.dart';
+import 'package:NeoStore/SharedPref/sharedprefs.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'Api/api_provider.dart';
 
 class LoginPage extends StatefulWidget {
 
@@ -89,7 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                 .then((value) {
               var msg = value.data.firstName + " " +
                   value.data.lastName;
-                setAcessToken(value.data.accessToken);
+              SharedPref().setUser(value.data);
               // print(msg);
               Fluttertoast.showToast(
                 msg: "Welcome " + msg,
@@ -217,11 +219,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  setAcessToken(String accessToken) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('access_token', accessToken);
-    // print(prefs.getString('access_token'));
-  }
+
 }
 class RegisterRoute extends PageRouteBuilder {
   final Widget page;

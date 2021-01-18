@@ -1,8 +1,10 @@
+import 'package:NeoStore/Api/api_provider.dart';
+import 'package:NeoStore/Screens/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
-import 'Api/api_provider.dart';
+
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -322,9 +324,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
             msg: value.userMsg,
             toastLength: Toast.LENGTH_SHORT,
             timeInSecForIosWeb: 1,
-            backgroundColor: Colors.redAccent,
+            backgroundColor: Colors.green.shade700,
             textColor: Colors.white,
           );
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginPage()));
+
         }).catchError((error, stacktrace) {
           // print(error["user_msg"]);
           Fluttertoast.showToast(

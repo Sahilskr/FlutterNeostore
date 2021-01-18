@@ -1,9 +1,12 @@
 import 'dart:convert';
 
-import 'package:NeoStore/login_page.dart';
+import 'file:///C:/Users/user/IdeaProjects/NeoStore/lib/Screens/login_page.dart';
 import 'package:NeoStore/models/cart_response.dart';
 import 'package:NeoStore/models/list_cart_response.dart';
 import 'package:NeoStore/models/login_response.dart';
+import 'package:NeoStore/models/order_details_response.dart';
+import 'package:NeoStore/models/order_list_response.dart';
+import 'package:NeoStore/models/order_response.dart';
 import 'package:NeoStore/models/product_details_response.dart';
 import 'package:NeoStore/models/product_rating_response.dart';
 import 'package:NeoStore/models/productlist_response.dart';
@@ -229,6 +232,81 @@ class ApiProvider{
 
     return token;
   }
+
+  Future<OrderResponse> order(String address) async{
+    String append="order";
+    print(_baseurl+append);
+    FormData formData=new FormData.fromMap({
+      "address":address,
+
+
+    });
+    String token=await getAccessToken()  ?? "no token";
+
+    try{
+      Response response=await _dio.post(_baseurl+append,data: formData,options: Options(
+        headers: {"access_token":token},));
+      var parse=json.decode(response.data);
+
+      // print(response.data);
+      //print(parse);
+      return OrderResponse.fromJson(parse);
+    }on DioError catch(e){
+      var error=json.decode(e.response.data);
+      //print(e.response.data);
+      throw error;
+
+    }
+  }
+
+  Future<OrderListResponse> listOrder() async{
+    String append="orderList";
+    print(_baseurl+append);
+    String token=await getAccessToken()  ?? "no token";
+    print(token);
+    try{
+      Response response=await _dio.get(_baseurl+append,options: Options(
+        headers: {"access_token":token},));
+      var parse=json.decode(response.data);
+
+      //print(response.data);
+      print(parse);
+      return OrderListResponse.fromJson(parse);
+    }on DioError catch(e){
+      var error=json.decode(e.response.data);
+      //print(e.response.data);
+
+      throw error;
+
+
+    }
+  }
+
+  Future<OrderDetailsResponse> orderDetail(int id) async{
+    String append="orderDetail";
+    print(_baseurl+append);
+    String token=await getAccessToken()  ?? "no token";
+    print(token);
+    try{
+      Response response=await _dio.get(_baseurl+append,
+        queryParameters: {"order_id":id},
+          options: Options(
+        headers: {"access_token":token},));
+      var parse=json.decode(response.data);
+
+      //print(response.data);
+      print(parse);
+      return OrderDetailsResponse.fromJson(parse);
+    }on DioError catch(e){
+      var error=json.decode(e.response.data);
+      //print(e.response.data);
+
+      throw error;
+
+
+    }
+  }
+
 
 
 
