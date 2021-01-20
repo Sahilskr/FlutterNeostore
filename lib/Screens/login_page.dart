@@ -1,5 +1,6 @@
 
 import 'package:NeoStore/Api/api_provider.dart';
+import 'package:NeoStore/Screens/forgot_password.dart';
 import 'package:NeoStore/Screens/home_screen.dart';
 import 'package:NeoStore/Screens/register_screen.dart';
 import 'package:NeoStore/SharedPref/sharedprefs.dart';
@@ -171,7 +172,7 @@ class _LoginPageState extends State<LoginPage> {
             Center(
               child: FlatButton(
                 onPressed: () {
-
+                  Navigator.push(context, RegisterRoute(page: ForgotPass()));
                 },
                 child: Text(
                     "Forgot Password?",
@@ -218,6 +219,7 @@ class _LoginPageState extends State<LoginPage> {
       ,
     );
   }
+
 
 
 }

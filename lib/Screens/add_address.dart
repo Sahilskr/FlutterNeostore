@@ -1,4 +1,5 @@
 import 'package:NeoStore/Database/db.dart';
+import 'package:NeoStore/Screens/address_list.dart';
 import 'package:NeoStore/Screens/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -71,13 +72,13 @@ class _AddAddressState extends State<AddAddress> {
                     minWidth: MediaQuery.of(context).size.width / 1.5,
                     onPressed: ()async {
                       SharedPreferences prefs = await SharedPreferences.getInstance();
-                      String email = prefs.getString('email');
+                      String email =await prefs.getString('email');
 
                       database.insertAdd(Add(address: _addressController.text, email: email))
                           .then((value){
                             print(value);
                             Navigator.of(context)
-                                .push(MaterialPageRoute(builder: (context) => CartScreen()));
+                                .push(MaterialPageRoute(builder: (context) => AddressList(email: email)));
                       });
                     },
                     child: Text(

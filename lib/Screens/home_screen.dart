@@ -1,11 +1,14 @@
 
 import 'package:NeoStore/Bloc/SessionBloc/session_bloc.dart';
 import 'package:NeoStore/Bloc/SessionBloc/session_events.dart';
+import 'package:NeoStore/Screens/address_list.dart';
 import 'package:NeoStore/Screens/cart_screen.dart';
 import 'package:NeoStore/Screens/login_page.dart';
+import 'package:NeoStore/Screens/my_address.dart';
 import 'package:NeoStore/Screens/order_list.dart';
 import 'package:NeoStore/Screens/productlist_screen.dart';
 import 'package:NeoStore/SharedPref/sharedprefs.dart';
+import 'package:NeoStore/models/user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -254,14 +257,14 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 0.5,
           ),
           ListTile(
-            title: Text('Edit Profile'),
+            title: Text('My addresses'),
             leading: Image.asset(
               "assets/icons/username_icon.png",
               color: Colors.black,
             ),
-            onTap: () {
-              // Update the state of the app.
-              // ...
+            onTap: () async{
+              User user=await SharedPref().getUser();
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyAddressList(email: user.email)));
             },
           ),
           const Divider(

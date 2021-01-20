@@ -34,5 +34,7 @@ class AppDatabase extends _$AppDatabase {
   Future<List<Add>> getAdds(String email) {
     return (select(adds)..where((t) => t.email.equals(email))).get();
   }
+  Future deleteAdd(Add add) => delete(adds).delete(add);
+
 }
 

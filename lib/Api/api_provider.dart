@@ -307,6 +307,26 @@ class ApiProvider{
     }
   }
 
+  Future<String> forgotPass(String email) async{
+    String append="users/forgot";
+    print(_baseurl+append);
+    FormData formData=new FormData.fromMap({
+      "email":email
+    });
+    try{
+      Response response=await _dio.post(_baseurl+append,data: formData);
+      var parse=json.decode(response.data);
+
+      // print(response.data);
+      print( parse['user_msg']);
+      return parse['user_msg'];
+    }on DioError catch(e){
+      var error=json.decode(e.response.data);
+      print(e.response.data);
+      throw error;
+
+    }
+  }
 
 
 
