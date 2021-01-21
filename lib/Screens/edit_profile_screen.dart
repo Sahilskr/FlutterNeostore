@@ -285,7 +285,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           );
                         });
                       } else {
-                        Fluttertoast.showToast(msg: "Edit Image");
+                        Fluttertoast.showToast(msg: "Select a Image");
                       }
                     },
                   ),
