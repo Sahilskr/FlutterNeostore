@@ -12,7 +12,8 @@ class SessionInitial extends SessionStates{
 class AuthSuccessful extends SessionStates{
   final String name;
   final String email;
-  AuthSuccessful({@required this.name,this.email} );
+  final String image;
+  AuthSuccessful({@required this.name,this.email,this.image} );
 
 
 

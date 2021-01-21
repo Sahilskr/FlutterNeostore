@@ -1,13 +1,16 @@
 
+import 'package:NeoStore/Api/api_provider.dart';
 import 'package:NeoStore/Bloc/SessionBloc/session_bloc.dart';
 import 'package:NeoStore/Bloc/SessionBloc/session_events.dart';
 import 'package:NeoStore/Screens/address_list.dart';
 import 'package:NeoStore/Screens/cart_screen.dart';
+import 'package:NeoStore/Screens/edit_profile_screen.dart';
 import 'package:NeoStore/Screens/login_page.dart';
-import 'package:NeoStore/Screens/my_address.dart';
 import 'package:NeoStore/Screens/order_list.dart';
 import 'package:NeoStore/Screens/productlist_screen.dart';
 import 'package:NeoStore/SharedPref/sharedprefs.dart';
+import 'package:NeoStore/models/cart_response.dart';
+import 'package:NeoStore/models/list_cart_response.dart';
 import 'package:NeoStore/models/user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,9 +21,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
-  final String name, email;
+  final String name, email,image;
 
-  HomeScreen({Key key, @required this.name, @required this.email})
+  HomeScreen({Key key, @required this.name, @required this.email,this.image})
       : super(key: key);
 }
 
@@ -31,6 +34,17 @@ class _HomeScreenState extends State<HomeScreen> {
     "assets/images/slider_img3.jpg",
     "assets/images/slider_img4.jpg"
   ];
+  String image="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+
+  @protected
+  @mustCallSuper
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -153,8 +167,8 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               children: <Widget>[
                 ClipOval(
-                  child: Image.asset(
-                    "assets/images/slider_img1.jpg",
+                  child: Image.network(
+                    widget.image??"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
                     height: 90,
                     width: 90,
                     fit: BoxFit.cover,
@@ -256,15 +270,17 @@ class _HomeScreenState extends State<HomeScreen> {
             thickness: 0.5,
             height: 0.5,
           ),
+
           ListTile(
-            title: Text('My addresses'),
+            hoverColor: Colors.blueAccent,
+            title: Text('Edit Profile'),
             leading: Image.asset(
               "assets/icons/username_icon.png",
               color: Colors.black,
             ),
-            onTap: () async{
-              User user=await SharedPref().getUser();
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyAddressList(email: user.email)));
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => EditProfileScreen()));
             },
           ),
           const Divider(

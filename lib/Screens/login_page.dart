@@ -46,6 +46,7 @@ class _LoginPageState extends State<LoginPage> {
       ]),
       controller: _emailController,
       decoration: InputDecoration(
+          prefixIcon: Icon(Icons.email),
           contentPadding: EdgeInsets.fromLTRB(20.0, 25.0, 20.0, 15.0),
           hintText: "Email",
           labelText: "Email",
@@ -65,6 +66,7 @@ class _LoginPageState extends State<LoginPage> {
       ]),
       controller: _passwordController,
       decoration: InputDecoration(
+          prefixIcon:  Icon(Icons.lock),
           contentPadding: EdgeInsets.fromLTRB(20.0, 25.0, 20.0, 15.0),
           hintText: "Password",
           labelText: "Password",
@@ -100,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                 backgroundColor: Colors.teal,
                 textColor: Colors.white,
               );
-              Navigator.push(context, RegisterRoute(page: HomeScreen(name: msg,email: value.data.email,)));
+              Navigator.push(context, RegisterRoute(page: HomeScreen(name: msg,email: value.data.email,image: value.data.profilePic,)));
             }).catchError((error, stacktrace) {
               print(error["user_msg"]);
               Fluttertoast.showToast(

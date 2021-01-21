@@ -68,6 +68,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ]),
       controller: _firstnameController,
       decoration: InputDecoration(
+          prefixIcon:  Icon(Icons.person),
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "First Name",
           border:
@@ -83,6 +84,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ]),
       controller: _lastnameController,
       decoration: InputDecoration(
+          prefixIcon:  Icon(Icons.person),
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Last Name",
           border:
@@ -99,6 +101,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ]),
       controller: _phoneController,
       decoration: InputDecoration(
+          prefixIcon:  Icon(Icons.phone),
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Phone no",
           border:
@@ -115,6 +118,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ]),
       controller: _emailController,
       decoration: InputDecoration(
+          prefixIcon:  Icon(Icons.email),
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Email",
           border:
@@ -133,6 +137,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ]),
       controller: _passwordController,
       decoration: InputDecoration(
+          prefixIcon:  Icon(Icons.lock),
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Password",
           border:
@@ -148,6 +153,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ]),
       controller: _cnfpasswordController,
       decoration: InputDecoration(
+          prefixIcon:  Icon(Icons.lock),
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Confirm Password",
           border:

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'file:///C:/Users/user/IdeaProjects/NeoStore/lib/Screens/login_page.dart';
 import 'package:NeoStore/models/cart_response.dart';
+import 'package:NeoStore/models/edit_profile_response.dart';
 import 'package:NeoStore/models/list_cart_response.dart';
 import 'package:NeoStore/models/login_response.dart';
 import 'package:NeoStore/models/order_details_response.dart';
@@ -320,6 +321,36 @@ class ApiProvider{
       // print(response.data);
       print( parse['user_msg']);
       return parse['user_msg'];
+    }on DioError catch(e){
+      var error=json.decode(e.response.data);
+      print(e.response.data);
+      throw error;
+
+    }
+  }
+
+  Future<ResponseEditProfile> editprofile(String fname,String lname,String email,String phone,String image,String bday) async{
+    String append="users/update";
+    print(_baseurl+append);
+    String token=await getAccessToken()  ?? "no token";
+
+    FormData formData=new FormData.fromMap({
+      "email": email,
+      "dob": bday,
+      "phone_no": phone,
+      "profile_pic": image,
+      "first_name": fname,
+      "last_name": lname,
+    });
+    try{
+      Response response=await _dio.post(_baseurl+append,data: formData,
+          options: Options(
+            headers: {"access_token":token},));
+      var parse=json.decode(response.data);
+
+      // print(response.data);
+     // print( parse['user_msg']);
+      return ResponseEditProfile.fromJson(parse);
     }on DioError catch(e){
       var error=json.decode(e.response.data);
       print(e.response.data);

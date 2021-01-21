@@ -3,7 +3,7 @@ import 'package:NeoStore/Bloc/SessionBloc/session_states.dart';
 import 'package:NeoStore/Screens/home_screen.dart';
 import 'package:NeoStore/Screens/login_page.dart';
 import 'package:NeoStore/Screens/splash_screen.dart';
-
+import 'main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,10 +29,10 @@ class _SessionState extends State<Session> {
           if(states is SessionInitial){
             BlocProvider.of<SessionBloc>(context).add(AppStarted());
 
-            return SplashScreen();
+            return Splash();
           }
           if(states is AuthSuccessful){
-            return HomeScreen(name: states.name, email: states.email);
+            return HomeScreen(name: states.name, email: states.email,image: states.image,);
           }
           if(states is UnAuthState){
             return LoginPage();

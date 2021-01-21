@@ -38,20 +38,25 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// class Splash extends StatefulWidget {
-//   @override
-//   _SplashState createState() => _SplashState();
-// }
-//
-// class _SplashState extends State<Splash> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       child: Center(
-//         child: Text("HHHHHHHHH"),
-//       ),
-//     );
-//   }
-// }
+class Splash extends StatefulWidget {
+  @override
+  _SplashState createState() => _SplashState();
+}
+
+class _SplashState extends State<Splash> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child:Center(
+        child: Text("NeoStores",
+            style: TextStyle(
+                color: Colors.teal,
+                fontSize: 50,
+                letterSpacing: 2.0,
+                fontWeight: FontWeight.w900)),
+      ),
+    );
+  }
+}
 
 

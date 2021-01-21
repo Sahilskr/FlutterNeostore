@@ -26,7 +26,7 @@ class SessionBloc extends Bloc<SessionEvent, SessionStates> {
         if (status == true) {
           User user=await SharedPref().getUser();
 
-          yield AuthSuccessful(name: user.fname+" "+user.lname,email: user.email);
+          yield AuthSuccessful(name: user.fname+" "+user.lname,email: user.email,image: user.image);
         } else {
           yield UnAuthState();
         }
